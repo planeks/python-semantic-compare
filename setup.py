@@ -5,13 +5,13 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="semantic_compare",
-    version="0.9",
+    version="0.9.1",
     author="Planeks",
     author_email="maxlytvynchuk@planeks.net",
-    description="Library for sentence deconstruction",
+    description="NLP library that extracts, compares, transforms and sorts with buckets phrases.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/planeks-admin/NLP-spacy",
+    url="https://github.com/planeks/python-semantic-compare",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",

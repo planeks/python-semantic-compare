@@ -1,7 +1,11 @@
 # python-semantic-сompare
-Exctracts, compares, transforms and sorts with buckets phrases.
+Extracts, compares, transforms and sorts with buckets phrases.
 ### Installation
-Project requires spacy model for natural language processing. If you want to use english, please run this command
+Install a library
+```sh
+$ pip install semantic-compare
+```
+The library requires a spacy model for natural language processing. If you want to use English, please run this command
 ```sh
 $ python -m spacy download en_core_web_lg
 ```
@@ -17,7 +21,7 @@ phrases = comparator.extract_phrases("Create, promote and develop a business.")
 ```sh
 ['Create a business','promote a business','develop a business']
 ```
-```sentencizer``` - splitter of sentences by punctuation(dot, question mark, exclamation mark).
+```sentencizer``` - a splitter of sentences by punctuation(dot, question mark, exclamation mark).
 
 **Advanced Usage**
 ```sh
@@ -41,10 +45,10 @@ def our_sentencizer(doc):
     return doc
 
 
-# Merge enteties and buld noun chunks
-comparator = sc(merge_entities=False, spacy_model='en_core_web_sm')
+# load small english spacy model(can be any spacy model)
+comparator = sc(spacy_model='en_core_web_sm')
     
-# Add custom pipe for text preprocessing
+# Add a custom pipe for text preprocessing
 comparator.add_custom_pipe(our_sentencizer, before='parser')
 
 phrases = comparator.extract_phrases('''
@@ -55,7 +59,6 @@ Must Have:
 ''')
 print('\n'.join(phrases))
 ```
-If you need to merge named entities or noun chunks, check out the built-in merge_entities and ```merge_noun_chunks```, ```merge_noun_chunks```.
 Using ```add_custom_pipe``` you can add your custom pipe for text processing in spacy.
 ### Compare phrases (Semantic similarity)
 Get the similarity of phrases against each other.
@@ -71,7 +74,7 @@ print(similarity)
 0.38569751
 ```
 **Example 2:**
-Get a two dimensional matrix that clusters the similarity of phrases against each other.
+Get a two-dimensional matrix that clusters the similarity of phrases against each other.
 ```sh
 phrases_1 = [
     'Communication with stakeholders',
@@ -95,11 +98,11 @@ print(similarity)
 **Output:**
 ```
 [[-0.03689054  0.0372301   0.17840812  0.09079809  0.65748763]
- [ 0.18079719  0.12055688  0.77624094  1.          0.22749564]
- [ 0.08472343  0.11505745  0.7030021   0.48876476  0.13252231]
- [ 0.7132235   0.07449755  0.178031    0.15712512  0.0676512 ]
- [ 0.11637229  0.38569745  0.23005028  0.25646406  0.26493344]
- [ 0.17955953  0.15243992  0.11233422  0.16087453  0.03144675]]
+[ 0.18079719  0.12055688  0.77624094  1.          0.22749564]
+[ 0.08472343  0.11505745  0.7030021   0.48876476  0.13252231]
+[ 0.7132235   0.07449755  0.178031    0.15712512  0.0676512 ]
+[ 0.11637229  0.38569745  0.23005028  0.25646406  0.26493344]
+[ 0.17955953  0.15243992  0.11233422  0.16087453  0.03144675]]
 ```
 ## Bucket sorting
 When you compare two documents you can see which phrases present in both or only in a specific document.
